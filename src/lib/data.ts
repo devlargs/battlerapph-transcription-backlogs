@@ -48,3 +48,18 @@ export async function getSnapshot(indexFromNewest: number): Promise<Snapshot | n
 	if (!at) return null;
 	return (await loadChunk(at.file))[at.offset] ?? null;
 }
+
+/**
+ * A run of snapshots starting at `indexFromNewest`, newest first. Stops early at
+ * the oldest snapshot, so the final page may be shorter than `count`. Repeated
+ * reads of one chunk are served from the cache in `loadChunk`.
+ */
+export async function getSnapshots(indexFromNewest: number, count: number): Promise<Snapshot[]> {
+	const snapshots: Snapshot[] = [];
+	for (let i = indexFromNewest; i < indexFromNewest + count; i++) {
+		const snapshot = await getSnapshot(i);
+		if (!snapshot) break;
+		snapshots.push(snapshot);
+	}
+	return snapshots;
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2026-08-18",
+    "scope": "component",
+    "component": "data-table",
+    "macrostructure": "n/a (component-scope)",
+    "genre": "modern-minimal",
+    "theme": "custom dark",
+    "theme_axes": "dark / grotesk-sans / cool",
+    "vibe": "instrument panel, cool, precise",
+    "enrichment": "none",
+    "brief": "BattleRap PH transcription backlogs — restyle the snapshot table"
+  }
+]

@@ -1,0 +1,67 @@
+/* Hallmark · component: data-table · genre: modern-minimal
+ * theme: custom dark (modern-minimal drop)
+ *   paper band  · dark      — oklch(15% 0.012 258) cool near-black
+ *   display     · grotesk-sans — Space Grotesk 600
+ *   accent hue  · cool      — oklch(70% 0.15 252) electric cobalt, signal only
+ * Every colour and font in the build references a token from this file.
+ */
+
+:root {
+	/* Ground and surfaces — depth comes from lightness, never shadow (dark-surface rule) */
+	--color-ground: oklch(15% 0.012 258);
+	--color-surface: oklch(20% 0.014 258);
+	--color-surface-2: oklch(24% 0.016 258);
+
+	/* Hairlines do the structural work — no boxed cards, no drop shadows */
+	--color-rule: oklch(27% 0.014 258);
+	--color-rule-2: oklch(33% 0.016 258);
+
+	/* Ink ramp */
+	/* Lightness floors are set by WCAG AA against --color-surface-2 (the row-hover
+	 * surface), not against --color-surface — hover is the worst case for muted text. */
+	--color-ink: oklch(93% 0.012 250);
+	--color-ink-2: oklch(72% 0.018 252);
+	--color-ink-3: oklch(63% 0.018 252);
+
+	/* One signal accent. Used on the meter fill, focus rings, hover borders — nothing else. */
+	--color-accent: oklch(70% 0.15 252);
+	--color-accent-ink: oklch(15% 0.012 258);
+
+	/* Semantic status */
+	--color-danger: oklch(65% 0.17 25);
+	--color-danger-surface: oklch(26% 0.06 25);
+
+	/* Type — 2+1: grotesk display, sans body, mono for every figure */
+	--font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+	--font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+	--text-xs: 0.6875rem;
+	--text-sm: 0.8125rem;
+	--text-base: 0.9375rem;
+	--text-lg: 1.3125rem;
+	--text-display: clamp(1.5rem, 1.1rem + 1.6vw, 2.125rem);
+
+	/* 4pt scale */
+	--space-2xs: 0.25rem;
+	--space-xs: 0.5rem;
+	--space-sm: 0.75rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2.5rem;
+	--space-2xl: 4rem;
+
+	/* Drawn with a ruler — tight technical radii */
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-pill: 999px;
+
+	--rule-hairline: 1px;
+	--meter-height: 3px;
+
+	--dur-instant: 90ms;
+	--dur-short: 160ms;
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in: cubic-bezier(0.4, 0, 1, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
