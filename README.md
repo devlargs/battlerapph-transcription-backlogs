@@ -22,8 +22,9 @@ Collection keys: `em` Emcees · `lg` Leagues · `lc` Locations · `ev` Events ·
 
 ## Automation
 
-`.github/workflows/fetch-stats.yml` runs every 12 hours (`0 */12 * * *` — 00:00 and 12:00 UTC,
-which is 08:00 and 20:00 Asia/Manila) and on manual dispatch,
+`.github/workflows/fetch-stats.yml` runs hourly (`0 * * * *`) while the cadence is being observed —
+the intended steady state is every 12 hours (`0 */12 * * *`, 08:00 and 20:00 Asia/Manila) — and on
+manual dispatch,
 then commits any change under `data/json/`. It needs **Settings → Actions → General → Workflow
 permissions → Read and write permissions** enabled on the repo.
 

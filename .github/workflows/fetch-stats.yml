@@ -2,9 +2,10 @@ name: Fetch stats
 
 on:
   schedule:
-    # Every 12 hours at 00:00 and 12:00 UTC — 08:00 and 20:00 Asia/Manila, the
-    # timezone the snapshots are stamped in. GitHub may delay scheduled runs under load.
-    - cron: "0 */12 * * *"
+    # Hourly, on the hour (UTC) — temporary, while the cadence is being observed.
+    # Switch to "0 */12 * * *" (08:00 and 20:00 Asia/Manila) once settled.
+    # GitHub may delay scheduled runs under load.
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 concurrency:
