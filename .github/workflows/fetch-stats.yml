@@ -1,0 +1,39 @@
+name: Fetch stats
+
+on:
+  schedule:
+    # Every 15 minutes (UTC). GitHub may delay scheduled runs under load.
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: fetch-stats
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch stats snapshot
+        run: node scripts/fetch-stats.mjs
+
+      - name: Commit snapshot
+        run: |
+          if [ -z "$(git status --porcelain data/json)" ]; then
+            echo "No data changes."
+            exit 0
+          fi
+          git config user.name "Ralph Largo"
+          git config user.email "devlargs@gmail.com"
+          git add data/json
+          git commit -m "chore(data): stats snapshot"
+          git push
