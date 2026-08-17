@@ -2,10 +2,11 @@ name: Fetch stats
 
 on:
   schedule:
-    # Hourly, on the hour (UTC) — temporary, while the cadence is being observed.
-    # Switch to "0 */12 * * *" (08:00 and 20:00 Asia/Manila) once settled.
-    # GitHub may delay scheduled runs under load.
-    - cron: "0 * * * *"
+    # Every 5 minutes — temporary, while the cadence is being observed closely.
+    # 5 min is GitHub's shortest allowed interval, and the most likely to be
+    # delayed or dropped under load. Switch to "0 */12 * * *" (08:00 and 20:00
+    # Asia/Manila) once settled.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -34,8 +35,8 @@ jobs:
             echo "No data changes."
             exit 0
           fi
-          git config user.name "Ralph Largo"
-          git config user.email "devlargs@gmail.com"
+          git config user.name "Auto Committer"
+          git config user.email "auto-committer@battlerapph.org"
           git add data/json
           git commit -m "chore(data): stats snapshot"
           git push

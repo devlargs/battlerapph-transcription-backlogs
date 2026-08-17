@@ -7,7 +7,8 @@ const config = {
 	kit: {
 		adapter: adapter({ fallback: '200.html' }),
 		paths: {
-			// Set BASE_PATH=/<repo-name> when deploying to GitHub Pages project sites.
+			// Empty on Vercel (serves at the domain root). Set BASE_PATH=/<sub-path>
+			// only when serving the app from a sub-directory.
 			base: process.env.BASE_PATH ?? ''
 		}
 	}

@@ -22,9 +22,9 @@ Collection keys: `em` Emcees · `lg` Leagues · `lc` Locations · `ev` Events ·
 
 ## Automation
 
-`.github/workflows/fetch-stats.yml` runs hourly (`0 * * * *`) while the cadence is being observed —
-the intended steady state is every 12 hours (`0 */12 * * *`, 08:00 and 20:00 Asia/Manila) — and on
-manual dispatch,
+`.github/workflows/fetch-stats.yml` runs every 5 minutes (`*/5 * * * *`) while the cadence is being
+observed — the intended steady state is every 12 hours (`0 */12 * * *`, 08:00 and 20:00
+Asia/Manila) — and on manual dispatch,
 then commits any change under `data/json/`. It needs **Settings → Actions → General → Workflow
 permissions → Read and write permissions** enabled on the repo.
 
@@ -42,5 +42,11 @@ npm run check        # svelte-check
 ```
 
 The app is a static build (`@sveltejs/adapter-static`). Snapshots are bundled at build time, so a
-new commit of data needs a rebuild/redeploy to appear on a deployed site. For a GitHub Pages project
-site, build with `BASE_PATH=/battlerapph-transcription-backlogs`.
+new commit of data needs a rebuild to appear on the deployed site.
+
+Deployment is Vercel, which builds on every push to `main` — including the hourly snapshot commits,
+since Vercel's webhook fires regardless of which token pushed. `vercel.json` points Vercel at
+`build/` (its default is `public/`). Nothing else is needed; there is no deploy workflow.
+
+`BASE_PATH` is left in `svelte.config.js` for serving under a sub-path. Vercel serves at the domain
+root, so it stays empty there.
