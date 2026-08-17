@@ -2,11 +2,10 @@ name: Fetch stats
 
 on:
   schedule:
-    # Every 5 minutes — temporary, while the cadence is being observed closely.
-    # 5 min is GitHub's shortest allowed interval, and the most likely to be
-    # delayed or dropped under load. Switch to "0 */12 * * *" (08:00 and 20:00
-    # Asia/Manila) once settled.
-    - cron: "*/5 * * * *"
+    # Every 8 hours at 00:00, 08:00 and 16:00 UTC — 08:00, 16:00 and 00:00
+    # Asia/Manila, the timezone the snapshots are stamped in. GitHub runs
+    # scheduled workflows at low priority and may deliver them late.
+    - cron: "0 */8 * * *"
   workflow_dispatch:
 
 concurrency:
